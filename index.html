@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>AdaTasks</title>
+  </head>
+
+  <body>
+    <header></header>
+    <main class="main">
+      <form class="form" action="">
+        <input
+          class="newtaskinput js-newTaskInput"
+          type="text"
+          name="newTask"
+          id="newTask"
+          placeholder="Nueva tarea"
+        />
+        <button class="newtaskbtn js-taskBtn" type="submit">Agregar</button>
+      </form>
+      <div class="container">
+        <form class="searchform" action="">
+          <input
+            class="search-field"
+            type="text"
+            name="searchField"
+            id="searchField"
+            placeholder="Ej: Gim"
+          />
+          <button class="searchBtn" type="submit">Buscar</button>
+        </form>
+        <ul class="js-task"></ul>
+      </div>
+    </main>
+    <footer></footer>
+    <script src="./main.js"></script>
+  </body>
+</html>
