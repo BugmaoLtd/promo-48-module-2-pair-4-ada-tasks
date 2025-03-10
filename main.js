@@ -27,12 +27,15 @@ const handleClickList = (event) => {
   // Pinta de nuevo las tareas en el html
 };
 
-list.addEventListener("click", handleClickList);
+list.addEventListener("change", handleClickList);
 
 const searchInput = document.querySelector(".search-field");
-const searchBtn = document.querySelector("searchBtn");
+const searchBtn = document.querySelector(".searchBtn");
 
-const contentFilter = (content) => {
+const contentFilter = (event) => {
+      event.preventDefault();
+      const search = searchInput.value;
+      console.log(search);
   return content;
 };
 
