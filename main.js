@@ -4,10 +4,10 @@ const inputTask = document.querySelector(".js-newTaskInput");
 const addBtn = document.querySelector(".js-taskBtn");
 const list = document.querySelector(".js-task");
 
-
 const handleClick = (event) => {
   event.preventDefault();
   const newTaskInputValue = inputTask.value;
+  list.innerHTML += newTaskInputValue;
 };
 
 addBtn.addEventListener("click", handleClick);
@@ -33,13 +33,21 @@ Si completed === true /añade la clase through
 */
 
 for (const task of tasks) {
-    list.innerHTML += `<li class="tachado"><input type="checkbox" id=""> ${task.name}</li>`;
+  if (task.completed === true) {
+    console.log(task);
+    list.innerHTML += `<li class="through"><input type="checkbox" id="">${task.name}</li>`;
+  } else {
+    list.innerHTML += `<li><input type="checkbox" id="">${task.name}</li>`;
+  }
 }
 
-const tachado = document.querySelector(".tachado");
+const handleClickList = (event) => {
+  const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
+  if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
 
+  // Busca la tarea que tenga el id `taskId` en el array `tasks`
+  // Una vez que has obtenido la tarea, actualiza la propiedad `completed`
+  // Pinta de nuevo las tareas en el html
+};
 
-if (tasks.completed === true) {
-    tachado.classList.add("through"); 
-    console.log(through); 
-}
+list.addEventListener("click", handleClickList);
