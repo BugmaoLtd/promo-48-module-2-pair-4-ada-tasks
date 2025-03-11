@@ -6,6 +6,25 @@ const inputTask = document.querySelector(".js-newTaskInput");
 const addBtn = document.querySelector(".js-taskBtn");
 const list = document.querySelector(".js-task");
 
+const tasks = [
+  { name: "Recoger setas en el campo", completed: true, id: 1 },
+  { name: "Comprar pilas", completed: true, id: 2 },
+  { name: "Poner una lavadora de blancos", completed: true, id: 3 },
+  {
+    name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
+    completed: false,
+    id: 4,
+  },
+];
+
+for (const task of tasks) {
+  if (task.completed === true) {
+    list.innerHTML += `<li class="through"><input type="checkbox" id="${task.id}">${task.name}</li>`;
+  } else {
+    list.innerHTML += `<li><input type="checkbox" id="${task.id}">${task.name}</li>`;
+  }
+}
+
 const handleClick = (event) => {
   event.preventDefault();
   const newTaskInputValue = inputTask.value;
@@ -21,6 +40,12 @@ la tarea debe mostrarse como completada
 const handleClickList = (event) => {
   const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
   if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
+  const findId = tasks.find((task) => {
+    return task.id === parseInt(taskId)
+  })
+
+
+
 
   // Busca la tarea que tenga el id `taskId` en el array `tasks`
   // Una vez que has obtenido la tarea, actualiza la propiedad `completed`
@@ -32,8 +57,7 @@ list.addEventListener("change", handleClickList);
 const searchInput = document.querySelector(".search-field");
 const searchBtn = document.querySelector(".searchBtn");
 
-const contentFilter = (event) => {
-      event.preventDefault();
+const contentFilter = (content) => {
       const search = searchInput.value;
       console.log(search);
   return content;
@@ -49,10 +73,4 @@ Si el checkbox esta marcado: la tarea se tacha
 Si completed === true /añade la clase through
 */
 
-// for (const task of tasks) {
-//   if (task.completed === true) {
-//     list.innerHTML += `<li class="through"><input type="checkbox" id="">${task.name}</li>`;
-//   } else {
-//     list.innerHTML += `<li><input type="checkbox" id="">${task.name}</li>`;
-//   }
-// }
+
