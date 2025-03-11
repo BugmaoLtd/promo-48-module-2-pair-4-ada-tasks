@@ -40,12 +40,10 @@ la tarea debe mostrarse como completada
 const handleClickList = (event) => {
   const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
   if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
+
   const findId = tasks.find((task) => {
-    return task.id === parseInt(taskId)
-  })
-
-
-
+    return task.id === parseInt(taskId);
+  });
 
   // Busca la tarea que tenga el id `taskId` en el array `tasks`
   // Una vez que has obtenido la tarea, actualiza la propiedad `completed`
@@ -54,16 +52,29 @@ const handleClickList = (event) => {
 
 list.addEventListener("change", handleClickList);
 
+/*Cuando la usuaria haga click en el boton Buscar, 
+recogemos los elementos del array que respondan al siguiente criterio,
+que el contenido del texto de la tarea, incluye la palabra del valor del input
+los pintamos en una lista
+*/
+
 const searchInput = document.querySelector(".search-field");
 const searchBtn = document.querySelector(".searchBtn");
+const listFilter = document.querySelector(".js-filter");
 
-const contentFilter = (content) => {
-      const search = searchInput.value;
-      console.log(search);
-  return content;
+const handleClick2 = (ev) => {
+  ev.preventDefault();
+  const tasksFilter = tasks.filter((task) => {
+    return task.name.includes(searchInput.value);
+  });
+  tasksFilter();
 };
 
-searchBtn.addEventListener("click", contentFilter);
+searchBtn.addEventListener("click", handleClick2);
+
+for (const taskFilter of tasksFilter) {
+  listFilter.innerHTML += `<li>${taskFilter}</li>`;
+}
 
 /* Seleccionar el input de nueva tarea el boton de agregar y el ul de la lista
 cuando la usuaria hace click en Agregar
@@ -72,5 +83,3 @@ lo pintamos en la lista
 Si el checkbox esta marcado: la tarea se tacha
 Si completed === true /añade la clase through
 */
-
-
